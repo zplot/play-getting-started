@@ -19,13 +19,13 @@ object Application extends Controller {
     try {
       val stmt = conn.createStatement
 
-      stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)")
-      stmt.executeUpdate("INSERT INTO ticks VALUES (now())")
+      stmt.executeUpdate("CREATE TABLE IF NOT EXISTS mates (numero INT)")
+      stmt.executeUpdate("INSERT INTO mates VALUES (3)")
 
-      val rs = stmt.executeQuery("SELECT tick FROM ticks")
+      val rs = stmt.executeQuery("SELECT numero FROM mates")
 
       while (rs.next) {
-        out += "Read from DB: " + rs.getTimestamp("tick") + "\n"
+        out += "Read from DB: " + rs.getInt("numero") + "\n"
       }
     } finally {
       conn.close()
